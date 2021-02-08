@@ -2,10 +2,10 @@ import React from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
 import { AddOutlined } from '@material-ui/icons'
 
-import { AddRun } from './Add-Run/Add-Run';
+import AddRun from './Add-Run/Add-Run';
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from '@react-firebase/auth';
 import { Login } from './Login/Login';
-import { Aux } from '../../hoc/Aux';
+
 
 export const AddForm: React.FC = () => (
     <Accordion>
@@ -18,10 +18,10 @@ export const AddForm: React.FC = () => (
             </IfFirebaseAuthed>
             <IfFirebaseUnAuthed>
                 {() => (
-                    <Aux>
+                    <React.Fragment>
                         <Typography color="textSecondary">You need to log in before you can submit some data.</Typography>
                         <Login />
-                    </Aux>
+                    </React.Fragment>
                 )}
             </IfFirebaseUnAuthed>
         </AccordionDetails>

@@ -13,7 +13,14 @@ interface RunPlotProps {
 }
 
 const RunPlot: React.FC<RunPlotProps> = ({runs}) => {
-    if (!runs || runs.length === 0) return <CircularProgress color="secondary" />
+    if (!runs || runs.length === 0) {
+        return (
+            <div style={{display: 'block', width: '100%', textAlign: 'center', marginTop: '2rem', marginBottom: '2rem'}}>
+                <CircularProgress color="secondary" />
+            </div>
+        );
+    }
+
     const data: Data[] = [];
 
     // find unique runner
@@ -31,7 +38,7 @@ const RunPlot: React.FC<RunPlotProps> = ({runs}) => {
             mode: 'markers',
             name: runner,
             marker: {size: 14, opacity: 0.6},
-            hovertext: runData.map(r => `${r.name}: ${r.pace} min/km`)
+            hovertext: runData.map(r => `${new Date((r.date as any).seconds * 1000).toLocaleDateString()}<br>${r.name}: ${r.pace} min/km`)
         } as Data);
     });
 
@@ -47,7 +54,8 @@ const RunPlot: React.FC<RunPlotProps> = ({runs}) => {
                     y: 1.05,
                     x: 0.05,
                     orientation: 'h'
-                }
+                },
+                margin: {t: 30, r: 5}
             }}
         />
     );

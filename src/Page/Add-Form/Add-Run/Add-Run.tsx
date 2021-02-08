@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { Button, FormControl, Snackbar, TextField } from '@material-ui/core';
-import { Alert } from '@material-ui/lab'
-
+import { Alert, Autocomplete } from '@material-ui/lab'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-import { Aux } from '../../../hoc/Aux';
+import { Run } from '../../../hoc/run.model';
+import { connect } from 'react-redux';
+import { AppState } from '../../../store/reducers';
 
-
-interface Run {
-    name: string;
-    distance: number;
-    timeMin: number;
-    date: Date;
-    pace?: string;
-    created?: Date;
+interface AddRunProps {
+    availableNames: string[];
 }
 
 const addDocument = (data: Run) => {
@@ -22,7 +17,7 @@ const addDocument = (data: Run) => {
 }
 
 
-export const AddRun: React.FC = () => {
+const AddRun: React.FC<AddRunProps> = ({availableNames}) => {
     // we need some state
     const [name, updateName] = useState('');
     const [distance, updateDistance] = useState(0);
@@ -49,10 +44,16 @@ export const AddRun: React.FC = () => {
     };
 
     return (
-        <Aux>
+        <React.Fragment>
             <form noValidate>
                 <FormControl fullWidth>
-                    <TextField label="Your Name"  error={name === ''} onChange={e => updateName(e.target.value)} value={name}/>
+                    {/*<TextField label="Your Name"  error={name === ''} onChange={e => updateName(e.target.value)} value={name}/>*/}
+                    <Autocomplete freeSolo autoComplete autoHighlight 
+                        options={availableNames} 
+                        renderInput={(params) => <TextField {...params} label="Your Name" />}
+                        onChange={(_, value) => updateName('' + value as string)}
+                        value={name}
+                    />
                 </FormControl>
                 <FormControl>
                     <TextField type="number" label="Distance [km]" error={distance === 0} onChange={e => updateDistance(Number(e.target.value))} value={distance}/>
@@ -83,6 +84,14 @@ export const AddRun: React.FC = () => {
             <Snackbar open={show} onClose={() => updateShow(false)} autoHideDuration={3000}>
                 <Alert elevation={6} variant="filled" severity="success">Well done! Your Data was saved!</Alert>
             </Snackbar>
-        </Aux>
+        </React.Fragment>
     );
 };
+
+const mapStateToProps = (state: AppState) => {
+    return {
+        availableNames: state.names
+    };
+}
+
+export default connect(mapStateToProps)(AddRun);
