@@ -4,9 +4,9 @@ import { Alert, Autocomplete } from '@material-ui/lab'
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-import { Run } from '../../../hoc/run.model';
+import { Run } from '../../../models/run.model';
 import { connect } from 'react-redux';
-import { AppState } from '../../../store/reducers';
+import { AppState } from '../../../models/app-state.model';
 
 interface AddRunProps {
     availableNames: string[];

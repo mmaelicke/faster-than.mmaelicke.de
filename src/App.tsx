@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Page } from './Page/Page';
+import  Page  from './Page/Page';
 import { firebaseConfig as config } from './firebase-config';
 import { FirebaseAuthProvider } from '@react-firebase/auth';
 import { FirestoreProvider } from '@react-firebase/firestore';

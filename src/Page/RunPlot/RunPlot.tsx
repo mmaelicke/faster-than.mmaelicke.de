@@ -1,12 +1,12 @@
 import React from 'react';
 import { CircularProgress } from '@material-ui/core';
 
-import { Run } from './../../hoc/run.model';
+import { Run } from '../../models/run.model';
 
 import Plot from 'react-plotly.js';
 import { Data } from 'plotly.js';
 import { connect } from 'react-redux';
-import { AppState } from '../../store/reducers';
+import { AppState } from '../../models/app-state.model';
 
 interface RunPlotProps {
     runs: Run[];

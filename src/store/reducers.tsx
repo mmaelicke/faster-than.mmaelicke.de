@@ -1,38 +1,22 @@
-import { AnyAction } from 'redux';
-import { Run } from '../hoc/run.model';
-import * as actions from './actions';
+import { Reducer } from 'redux';
+import { AppState } from '../models/app-state.model';
+import * as actionTypes from './actions/actionTypes';
 
-export interface AppState {
-    runs: Run[];
-    names: string[];
-}
-
-export interface PublishAction{
-    type: typeof actions.UPDATE_RUNS;
-    runs: Run[];
-}
 
 const initialState: AppState = {
     runs: [],
     names: []
 };
 
-
-const onNewDatapublished = (state: AppState, action: PublishAction): AppState => {
-    return {
-        ...state,
-        runs: [...action.runs],
-        // find only the first occurence of each name
-        names: action.runs.map(r => r.name).filter((value, index, allNames) => allNames.indexOf(value) === index)
-    }
-}
-
-const rootReducer = (state = initialState, action: AnyAction) => {
+export const reducer: Reducer = (state= initialState, action) => {
     switch (action.type) {
-        case actions.UPDATE_RUNS:
-            return onNewDatapublished(state, action as PublishAction);
+        case actionTypes.UPDATE_RUNS: 
+            return {
+                ...state,
+                runs: [...action.runs],
+                names: [...action.names]
+            }
     }
-    return state;
-}
 
-export default rootReducer;
+    return state;
+};

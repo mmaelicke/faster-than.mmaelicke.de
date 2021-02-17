@@ -1,14 +1,22 @@
 import { Grid, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { subscribeFirebase } from '../store/firebase-dispatcher';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { AddForm } from './Add-Form/Add-Form';
 
 import { Header } from './Header/Header';
 import RunPlot from './RunPlot/RunPlot';
+import { fetchRuns } from '../store/actions/index';
 
-export const Page: React.FC = () => {
+interface PageProps {
+    subscribeToFirebase: () => any;
+}
+
+const Page: React.FC<PageProps> = (props) => {
     // subscribe to Firebase on startup
-    useEffect(() => subscribeFirebase(), []);
+    useEffect(() => {
+        props.subscribeToFirebase();
+    }, []);
     
     return (
         <React.Fragment>
@@ -24,3 +32,12 @@ export const Page: React.FC = () => {
         </React.Fragment>
     )
 };
+
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        subscribeToFirebase: () => dispatch(fetchRuns() as any)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Page);
