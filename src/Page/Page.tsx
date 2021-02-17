@@ -2,8 +2,9 @@ import { Grid, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { AddForm } from './Add-Form/Add-Form';
 
+import { AddForm } from './Add-Form/Add-Form';
+import { Details } from './Details/Details';
 import { Header } from './Header/Header';
 import RunPlot from './RunPlot/RunPlot';
 import { fetchRuns } from '../store/actions/index';
@@ -26,6 +27,7 @@ const Page: React.FC<PageProps> = (props) => {
                 <Grid item xs={12} md={10} lg={8}>
                     <Paper elevation={2}>
                         <AddForm />
+                        <Details />
                     </Paper>
                 </Grid>
             </Grid>
