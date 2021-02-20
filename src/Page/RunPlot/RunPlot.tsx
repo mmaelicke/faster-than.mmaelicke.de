@@ -47,7 +47,7 @@ const RunPlot: React.FC<RunPlotProps> = ({runs}) => {
 
 const mapStateToProps = (state: AppState) => {
     return {
-        runs: state.runs,
+        runs: state.filteredRuns,
         runners: state.names
     }
 }

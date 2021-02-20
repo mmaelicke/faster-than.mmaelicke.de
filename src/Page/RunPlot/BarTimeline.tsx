@@ -47,7 +47,8 @@ export const BarTimeline: React.FC<BarTimelineProps> = ({ runs }) => {
                     orientation: 'h'
                 },
                 yaxis: {
-                    title: 'Distance [km]'
+                    title: 'Distance [km]',
+                    fixedrange: true
                 }
             }} 
         />

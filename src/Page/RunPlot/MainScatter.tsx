@@ -7,26 +7,27 @@ interface MainScatterProps {
     runs: Run[];
 }
 
-export const MainScatter: React.FC<MainScatterProps> = ({runs}) => {
+export const MainScatter: React.FC<MainScatterProps> = (props) => {
     // container for the data
     const data: Data[] = [];
 
     // find unique runner
     const runners: string[] = [];
-    runs.forEach(r => {
+    props.runs.forEach(r => {
         if (!runners.includes(r.name)) runners.push(r.name); 
     });
 
     // create the data
     runners.forEach(runner => {
-        const runData: Run[] = runs.filter(r => r.name === runner);
+        const runData: Run[] = props.runs.filter(r => r.name === runner);
         data.push({
             x: runData.map(r => r.distance),
             y: runData.map(r => r.timeMin / r.distance),
             mode: 'markers',
             name: runner,
             marker: {size: 14, opacity: 0.6},
-            hovertext: runData.map(r => `${new Date((r.date as any).seconds * 1000).toLocaleDateString()}<br>${r.name}: ${r.pace} min/km`)
+            hovertext: runData.map(r => `${new Date((r.date as any).seconds * 1000).toLocaleDateString()}<br>${r.name}: ${r.pace} min/km`),
+            visible: true
         } as Data);
     });
 
