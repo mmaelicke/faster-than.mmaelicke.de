@@ -3,16 +3,33 @@ import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mate
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 import { RunStats } from './RunStats';
+import { Run } from '../../models/run.model';
+import { AppState } from '../../models/app-state.model';
+import { connect } from 'react-redux';
 
+interface DetailsProps {
+    runs: Run[];
+    runners: string[];
+}
 
-export const Details: React.FC = () => (
+const Details: React.FC<DetailsProps> = props => (
     <Accordion>
         <AccordionSummary expandIcon={<TrendingUpIcon />}>
             <Typography variant="h6">Details</Typography>
         </AccordionSummary>
-        <AccordionDetails style={{flexDirection: 'column', width: '100%', alignItems: 'center', minHeight: '400px'}}>
+        <AccordionDetails style={{flexDirection: 'column', width: '100%', alignItems: 'center', minHeight: '400px', boxSizing: 'border-box'}}>
+            <RunStats runs={props.runs} runners={props.runners} />
             <i>no details provided yet</i>
 
         </AccordionDetails>
     </Accordion>
 );
+
+
+const mapStateToProps = (state: AppState) => {
+    return {
+        runs: state.filteredRuns,
+        runners: state.names
+    }
+}
+export default connect(mapStateToProps)(Details);

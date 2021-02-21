@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import { AddForm } from './Add-Form/Add-Form';
-import { Details } from './Details/Details';
+import Details from './Details/Details';
 import { Header } from './Header/Header';
 import RunPlot from './RunPlot/RunPlot';
 import { fetchRuns } from '../store/actions/index';
