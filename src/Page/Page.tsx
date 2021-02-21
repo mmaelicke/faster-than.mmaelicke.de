@@ -15,9 +15,7 @@ interface PageProps {
 
 const Page: React.FC<PageProps> = (props) => {
     // subscribe to Firebase on startup
-    useEffect(() => {
-        props.subscribeToFirebase();
-    }, []);
+    useEffect(() => props.subscribeToFirebase(), []);
     
     return (
         <React.Fragment>
