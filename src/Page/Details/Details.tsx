@@ -19,8 +19,6 @@ const Details: React.FC<DetailsProps> = props => (
         </AccordionSummary>
         <AccordionDetails style={{flexDirection: 'column', width: '100%', alignItems: 'center', minHeight: '400px', boxSizing: 'border-box'}}>
             <RunStats runs={props.runs} runners={props.runners} />
-            <i>no details provided yet</i>
-
         </AccordionDetails>
     </Accordion>
 );
