@@ -62,7 +62,12 @@ const AddRun: React.FC<AddRunProps> = ({availableNames}) => {
                     <TextField type="number" label="Time [min]" error={timeMin === 0} onChange={e => updateTime(Number(e.target.value))} value={timeMin}/>
                 </FormControl>
                 <FormControl fullWidth>
-                    <TextField type="datetime-local" label="Date" value={date.toISOString().slice(undefined, -5)} onChange={e => updateDate(new Date(e.target.value))} />    
+                    <TextField 
+                        type="date"
+                        label="Date"
+                        value={date.toISOString().split('T')[0]}
+                        onChange={e => updateDate(new Date(e.target.value))}
+                    />    
                 </FormControl>
             </form>
             <p>
