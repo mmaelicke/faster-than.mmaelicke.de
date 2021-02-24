@@ -21,7 +21,7 @@ export const BarTimeline: React.FC<BarTimelineProps> = ({ runs }) => {
         
         // create the plotly trace
         data.push({
-            x: runData.map(r => new Date((r.date as any).seconds * 1000)),
+            x: runData.map(r => new Date((r.date as any).seconds * 1000).toISOString().split('T')[0]),
             y: runData.map(r => r.distance),
             stackgroup: 'one',
             name: runner,
@@ -49,6 +49,9 @@ export const BarTimeline: React.FC<BarTimelineProps> = ({ runs }) => {
                 yaxis: {
                     title: 'Distance [km]',
                     fixedrange: true
+                },
+                xaxis: {
+                    type: 'date'
                 }
             }} 
         />
