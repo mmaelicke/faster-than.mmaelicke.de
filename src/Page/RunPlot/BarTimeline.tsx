@@ -41,7 +41,7 @@ export const BarTimeline: React.FC<BarTimelineProps> = ({ runs }) => {
                 barmode: 'stack',
                 legend: {
                     yanchor: 'bottom',
-                    xanchor: 'center',
+                    xanchor: 'left',
                     y: -0.5,
                     x: 0.05,
                     orientation: 'h'

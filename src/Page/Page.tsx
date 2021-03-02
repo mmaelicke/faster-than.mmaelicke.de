@@ -3,6 +3,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
+// date context
+//import DateFnsUtils from '@date-io/date-fns';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+
 import { AddForm } from './Add-Form/Add-Form';
 import Details from './Details/Details';
 import { Header } from './Header/Header';
@@ -18,7 +23,7 @@ const Page: React.FC<PageProps> = (props) => {
     useEffect(() => props.subscribeToFirebase(), []);
     
     return (
-        <React.Fragment>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
             <Header />
             <RunPlot />
             <Grid container justify="center">
@@ -29,7 +34,7 @@ const Page: React.FC<PageProps> = (props) => {
                     </Paper>
                 </Grid>
             </Grid>
-        </React.Fragment>
+        </MuiPickersUtilsProvider>
     )
 };
 

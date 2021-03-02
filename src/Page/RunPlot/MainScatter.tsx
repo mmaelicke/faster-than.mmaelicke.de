@@ -39,7 +39,7 @@ export const MainScatter: React.FC<MainScatterProps> = (props) => {
                 autosize: true,
                 legend: {
                     yanchor: 'top',
-                    xanchor: 'center',
+                    xanchor: 'left',
                     y: 1.05,
                     x: 0.05,
                     orientation: 'h'
