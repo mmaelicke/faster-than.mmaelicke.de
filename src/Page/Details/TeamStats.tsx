@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { DatePicker } from '@material-ui/pickers';
 import { Grid } from '@material-ui/core';
 import { Run } from '../../models/run.model';
+import { TeamStatsPlot } from './TeamStatsPlot';
 
 // const THRESH = {};
 
@@ -9,7 +10,7 @@ interface TeamStatsProps {
     runs: Run[];
 }
 
-interface MonthStats {
+export interface MonthStats {
     date: Date;
     streak5km: number;
     streak10km: number;
@@ -79,7 +80,7 @@ export const TeamStats: React.FC<TeamStatsProps> = props => {
     useEffect(() => update(new Date()), [props.runs]);
     
     return (
-        <Grid container spacing={5}>
+        <Grid container spacing={3}>
             
             <Grid item xs={12} md={4}>
                 <DatePicker
@@ -91,8 +92,8 @@ export const TeamStats: React.FC<TeamStatsProps> = props => {
                 />
             </Grid>
             
-            <Grid item xs={12} md={8}>
-                <pre><code>{JSON.stringify(stats, null, 4)}</code></pre>
+            <Grid item xs={12} md={8} style={{padding: '0.6rem'}}>
+                <TeamStatsPlot {...stats} />
             </Grid>
 
         </Grid>
