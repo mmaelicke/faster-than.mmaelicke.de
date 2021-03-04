@@ -5,7 +5,8 @@ import { MonthStats } from './TeamStats';
 import { Typography } from '@material-ui/core';
 
 export const TeamStatsPlot: React.FC<MonthStats> = props => {
-    const dom = new Date(props.date.getFullYear(), props.date.getMonth() + 1, 0).getDate();
+    const date = props.date ? props.date : new Date();
+    const dom = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     // empty container for the plot data
     const data: Data[] = [
         {
