@@ -34,12 +34,15 @@ export const Header: React.FC = () => {
             <Toolbar className={classes.toolbar}>
                 <Typography variant="h6">Faster Than mmaelicke</Typography>
                 <ShowLastFilter />
-                <IfFirebaseAuthed>
-                    {() => <Button color="inherit" onClick={logout}>LOGOUT</Button>}
-                </IfFirebaseAuthed>
-                <IfFirebaseUnAuthed>
-                    {() => <span></span>}
-                </IfFirebaseUnAuthed>
+                <div>
+                    <IfFirebaseAuthed>
+                        {() => <Button color="inherit" onClick={logout}>LOGOUT</Button>}
+                    </IfFirebaseAuthed>
+                    <IfFirebaseUnAuthed>
+                        {() => <span></span>}
+                    </IfFirebaseUnAuthed>
+                    <Typography variant="button">v: { process.env.REACT_APP_VERSION }</Typography>
+                </div>
             </Toolbar>
         </AppBar>
     );
