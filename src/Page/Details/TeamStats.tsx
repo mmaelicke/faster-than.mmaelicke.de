@@ -65,13 +65,18 @@ const getStats = (runs: Run[], filterMonth: Date): MonthStats => {
 export const TeamStats: React.FC<TeamStatsProps> = props => {
     const [date, changeDate] = useState(new Date());
     const [stats, changeStats] = useState({} as any);
+    const [lastStats, changeLastStats] = useState({} as any);
 
     // calculate
     const update = (date: Date) => {
         // calculate the new stats
         const newStats = getStats(props.runs, date);
-        changeStats(newStats);
+        const prevMonth = new Date(date.getFullYear(), date.getMonth() - 1, date.getDate());
+        const lastStats = getStats(props.runs, prevMonth);
         
+        changeStats(newStats);
+        changeLastStats(lastStats);
+
         // update the date
         changeDate(date);
     }
@@ -93,7 +98,7 @@ export const TeamStats: React.FC<TeamStatsProps> = props => {
             </Grid>
             
             <Grid item xs={12} md={8} style={{padding: '0.6rem'}}>
-                <TeamStatsPlot {...stats} />
+                <TeamStatsPlot currentStats={stats} lastStats={lastStats} />
             </Grid>
 
         </Grid>
