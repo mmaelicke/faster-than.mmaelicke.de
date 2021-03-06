@@ -20,9 +20,9 @@ export const TeamStatsPlot: React.FC<TeamStatsPlotProps> = ({currentStats, lastS
             gauge: {
                 shape: 'angular',
                 axis: {range: [0, dom]},
-                bar: {color: currentStats.streak5km > 15 ? 'darkgreen' : 'purple'}
+                bar: {color: currentStats.streak5km > 10 ? 'darkgreen' : 'purple'}
             },
-            delta: {reference: lastStats.streak5km, position: 'top'},
+            delta: {reference: lastStats.streak5km, position: 'bottom'},
             value: currentStats.streak5km,
             domain: { y: [0.15, 0.6], x: [0, 0.45] },
             title: {text: '5km streak'}
@@ -33,7 +33,7 @@ export const TeamStatsPlot: React.FC<TeamStatsPlotProps> = ({currentStats, lastS
             gauge: {
                 shape: 'angular',
                 axis: {range: [0, dom]},
-                bar: {color: currentStats.streak10km > 10 ? 'darkgreen' : 'purple'}
+                bar: {color: currentStats.streak10km > 6 ? 'darkgreen' : 'purple'}
             },
             delta: {reference: lastStats.streak10km, position: 'bottom'},
             value: currentStats.streak10km,
